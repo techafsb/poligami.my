@@ -5,7 +5,7 @@ Aplikasi web + Android (Capacitor) untuk pendaftaran, pengesahan e-mel, padanan,
 ## Alur pengguna
 
 1. Daftar akaun (nama, e-mel, telefon)
-2. Sahkan e-mel melalui pautan dari `noreply@poligami.my`
+2. Sahkan e-mel melalui pautan dari `poligami.hq@gmail.com`
 3. Maklumat asas, kata laluan, peranan, status perkahwinan, negeri
 4. Panduan semak — satu halaman setiap item, buka seksyen, baca, tick, buka seterusnya
 5. Muat naik MyKad (depan & belakang)
@@ -31,9 +31,10 @@ Tanpa Resend, skrin pengesahan menunjukkan **Buka pautan pengesahan** untuk teru
 
 ### 2. Resend
 
-1. Cipta domain `poligami.my` di [resend.com](https://resend.com)
+1. Cipta akaun Resend dengan `poligami.hq@gmail.com`
 2. Tambah `RESEND_API_KEY`
-3. From: `Poligami <noreply@poligami.my>`
+3. Reply-to: `poligami.hq@gmail.com`
+4. Pengirim: Resend tidak boleh hantar sebagai `@gmail.com`. Guna domain Resend ujian dulu, atau verify `poligami.my` kemudian set `RESEND_FROM`.
 
 ### 3. Vercel
 
@@ -43,7 +44,8 @@ Set environment variables:
 SUPABASE_URL=
 SUPABASE_SERVICE_ROLE_KEY=
 RESEND_API_KEY=
-RESEND_FROM=Poligami <noreply@poligami.my>
+RESEND_FROM=Poligami HQ <beth.t@example.com>
+RESEND_REPLY_TO=poligami.hq@gmail.com
 APP_URL=https://poligami.my
 VITE_API_URL=https://poligami.my
 ```

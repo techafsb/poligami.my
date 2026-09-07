@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import * as db from "@/lib/db";
 import type { Profile as UserProfile } from "@/lib/types";
-import { CHAT_SUGGESTIONS } from "@/lib/types";
+import { CHAT_SUGGESTIONS, HQ_EMAIL } from "@/lib/types";
 
 function SplashScreen({ onDone }: { onDone: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -3235,14 +3235,22 @@ function BantuanScreen({ onBack }: { onBack: () => void }) {
       <div className="flex-1 overflow-y-auto px-6 pt-6 pb-10">
         <div className="grid grid-cols-2 gap-3 mb-8">
           {[
-            { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, label: "Live Chat", sub: "Hari Isnin–Jumaat" },
-            { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>, label: "E-mel", sub: "support@poligami.my" },
+            { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, label: "Live Chat", sub: "Hari Isnin–Jumaat", href: undefined as string | undefined },
+            { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>, label: "E-mel", sub: HQ_EMAIL, href: `mailto:${HQ_EMAIL}` },
           ].map(c => (
+            c.href ? (
+              <a key={c.label} href={c.href} className="border border-gray-200 rounded-2xl p-4 flex flex-col gap-2 hover:bg-gray-50 transition-colors text-left">
+                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">{c.icon}</div>
+                <p className="text-sm font-medium">{c.label}</p>
+                <p className="text-xs text-gray-400">{c.sub}</p>
+              </a>
+            ) : (
             <button key={c.label} className="border border-gray-200 rounded-2xl p-4 flex flex-col gap-2 hover:bg-gray-50 transition-colors text-left">
               <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">{c.icon}</div>
               <p className="text-sm font-medium">{c.label}</p>
               <p className="text-xs text-gray-400">{c.sub}</p>
             </button>
+            )
           ))}
         </div>
         <p className="text-[10px] tracking-[0.2em] text-gray-400 uppercase mb-4 font-medium">Soalan Lazim</p>
@@ -3268,7 +3276,7 @@ function PolisiPrivasiScreen({ onBack }: { onBack: () => void }) {
     { title: "Penggunaan Data", body: "Data anda digunakan untuk menjalankan semakan eKYC, memadankan profil berdasarkan kriteria yang anda tetapkan, dan mematuhi keperluan undang-undang Malaysia." },
     { title: "Perkongsian Data", body: "Kami tidak berkongsi maklumat peribadi anda dengan pihak ketiga tanpa kebenaran anda, kecuali apabila diperlukan oleh undang-undang atau perintah mahkamah." },
     { title: "Keselamatan Data", body: "Semua data disulitkan menggunakan piawaian industri (AES-256). Foto dikaburkan secara lalai dan hanya boleh dilihat dengan kebenaran eksplisit pengguna." },
-    { title: "Hak Anda", body: "Anda berhak untuk mengakses, membetulkan, atau memadamkan data peribadi anda pada bila-bila masa. Hubungi kami di privacy@poligami.my untuk sebarang pertanyaan." },
+    { title: "Hak Anda", body: `Anda berhak untuk mengakses, membetulkan, atau memadamkan data peribadi anda pada bila-bila masa. Hubungi kami di ${HQ_EMAIL} untuk sebarang pertanyaan.` },
   ];
   return (
     <div className="flex flex-col h-full bg-white">

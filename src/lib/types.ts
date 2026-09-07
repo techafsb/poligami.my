@@ -82,6 +82,9 @@ export const MALAYSIAN_STATES = [
   "Sarawak",
 ] as const;
 
+export const HQ_EMAIL = "poligami.hq@gmail.com";
+export const HQ_FROM = `Poligami HQ <${HQ_EMAIL}>`;
+
 export const CHAT_SUGGESTIONS = [
   "Hi!",
   "Assalamualaikum",

@@ -30,12 +30,14 @@ export default async function handler(req: Request) {
 
   const origin = process.env.APP_URL || new URL(req.url).origin;
   const verifyUrl = `${origin}/?verify=${encodeURIComponent(token)}`;
-  const from = process.env.RESEND_FROM || "Poligami <noreply@poligami.my>";
+  const from = process.env.RESEND_FROM || "Poligami HQ <poligami.hq@gmail.com>";
+  const replyTo = process.env.RESEND_REPLY_TO || "poligami.hq@gmail.com";
 
   const resend = new Resend(resendKey);
   const { error } = await resend.emails.send({
     from,
     to: email,
+    replyTo,
     subject: "Sahkan akaun poligami.my anda",
     html: `
       <div style="font-family:Georgia,serif;max-width:480px;margin:0 auto;padding:32px;color:#111">
