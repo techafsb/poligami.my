@@ -1,0 +1,11 @@
+{
+  "title": "Poligami",
+  "description": "Connect and manage relationships in a polygamous community with tools designed for communication, organization, and mutual understanding.",
+  "robots": {
+    "index": true
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
